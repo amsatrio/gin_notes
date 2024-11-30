@@ -1,0 +1,25 @@
+# docker-compose.yml
+version: "3.9"
+services:
+  actix_crud:
+    container_name: gin_notes
+    image: amsatrio/gin_notes:0.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8802:8802"
+    #network_mode: "host"
+    networks:
+      - sql-database
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    deploy:
+      replicas: 1
+
+networks:
+  sql-database:
+    name: sql-database-network
+    external: true

@@ -1,0 +1,1952 @@
+basePath: /
+definitions:
+  model.MBiodata:
+    properties:
+      createdBy:
+        type: integer
+      createdOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      deletedBy:
+        type: integer
+      deletedOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      fullname:
+        maxLength: 255
+        type: string
+      id:
+        type: integer
+      image:
+        items:
+          type: integer
+        type: array
+      imagePath:
+        maxLength: 255
+        type: string
+      isDelete:
+        type: boolean
+      mobilePhone:
+        maxLength: 15
+        type: string
+      modifiedBy:
+        type: integer
+      modifiedOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+    required:
+    - id
+    type: object
+  model.MNotes:
+    properties:
+      content:
+        type: string
+      createdBy:
+        type: integer
+      createdOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      deletedBy:
+        type: integer
+      deletedOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      id:
+        type: integer
+      isDelete:
+        type: boolean
+      modifiedBy:
+        type: integer
+      modifiedOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      title:
+        maxLength: 200
+        type: string
+    required:
+    - id
+    type: object
+  model.MRole:
+    properties:
+      code:
+        maxLength: 20
+        type: string
+      createdBy:
+        type: integer
+      createdOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      deletedBy:
+        type: integer
+      deletedOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      id:
+        type: integer
+      isDelete:
+        type: boolean
+      level:
+        type: integer
+      modifiedBy:
+        type: integer
+      modifiedOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      name:
+        maxLength: 20
+        type: string
+    required:
+    - id
+    type: object
+  model.MUser:
+    properties:
+      biodataId:
+        type: integer
+      createdBy:
+        type: integer
+      createdOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      deletedBy:
+        type: integer
+      deletedOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      email:
+        maxLength: 100
+        type: string
+      id:
+        type: integer
+      isDelete:
+        type: boolean
+      isLocked:
+        type: boolean
+      lastLogin:
+        example: "2024-02-16 10:33:10"
+        type: string
+      loginAttempt:
+        type: integer
+      mbiodata:
+        $ref: '#/definitions/model.MBiodata'
+      modifiedBy:
+        type: integer
+      modifiedOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      mrole:
+        $ref: '#/definitions/model.MRole'
+      password:
+        maxLength: 255
+        type: string
+      roleId:
+        type: integer
+    required:
+    - id
+    type: object
+  model.TResetPassword:
+    properties:
+      createdBy:
+        type: integer
+      createdOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      deletedBy:
+        type: integer
+      deletedOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      id:
+        type: integer
+      isDelete:
+        type: boolean
+      modifiedBy:
+        type: integer
+      modifiedOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      newPassword:
+        maxLength: 255
+        type: string
+      oldPassword:
+        maxLength: 255
+        type: string
+      resetFor:
+        maxLength: 20
+        type: string
+    required:
+    - id
+    type: object
+  model.TToken:
+    properties:
+      createdBy:
+        type: integer
+      createdOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      deletedBy:
+        type: integer
+      deletedOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      email:
+        maxLength: 100
+        type: string
+      expiredOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      id:
+        type: integer
+      isDelete:
+        type: boolean
+      isExpired:
+        type: boolean
+      modifiedBy:
+        type: integer
+      modifiedOn:
+        example: "2024-02-16 10:33:10"
+        type: string
+      muser:
+        $ref: '#/definitions/model.MUser'
+      token:
+        maxLength: 50
+        type: string
+      usedFor:
+        maxLength: 20
+        type: string
+      userId:
+        type: integer
+    required:
+    - id
+    type: object
+  response.Response:
+    properties:
+      data:
+        type: string
+      message:
+        example: success
+        type: string
+      path:
+        example: /v1/m_biodata
+        type: string
+      status:
+        example: 200
+        type: integer
+      timestamp:
+        example: "2024-02-16 10:33:10"
+        type: string
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+host: assusa456u.local:8802
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server celler server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: GIN CRUD
+  version: "1.0"
+paths:
+  /v1/m_biodata:
+    get:
+      consumes:
+      - application/json
+      description: Get Page MBiodata
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - default: "0"
+        description: page
+        in: query
+        name: _page
+        type: string
+      - default: "5"
+        description: size
+        in: query
+        name: _size
+        type: string
+      - description: sort
+        in: query
+        name: _sort
+        type: string
+      - description: filter
+        in: query
+        name: _filter
+        type: string
+      - description: global filter
+        in: query
+        name: _q
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MBiodataPage
+      tags:
+      - mBiodata
+    post:
+      consumes:
+      - application/json
+      description: Create MBiodata
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: Add MBiodata
+        in: body
+        name: mBiodata
+        required: true
+        schema:
+          $ref: '#/definitions/model.MBiodata'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MBiodataCreate
+      tags:
+      - mBiodata
+  /v1/m_biodata/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete MBiodata by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: MBiodata id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MBiodataDelete
+      tags:
+      - mBiodata
+    get:
+      consumes:
+      - application/json
+      description: Get MBiodata by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: MBiodata id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MBiodataIndex
+      tags:
+      - mBiodata
+    put:
+      consumes:
+      - application/json
+      description: Update MBiodata
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: Update MBiodata
+        in: body
+        name: mBiodata
+        required: true
+        schema:
+          $ref: '#/definitions/model.MBiodata'
+      - description: MBiodata id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MBiodataUpdate
+      tags:
+      - mBiodata
+  /v1/m_biodata/delete/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Soft Delete MBiodata by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: MBiodata id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MBiodataSoftDelete
+      tags:
+      - mBiodata
+  /v1/m_biodata/header:
+    get:
+      consumes:
+      - application/json
+      description: Get MBiodata header
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MBiodataHeader
+      tags:
+      - mBiodata
+  /v1/m_notes:
+    get:
+      consumes:
+      - application/json
+      description: Get Page MNotes
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - default: "0"
+        description: page
+        in: query
+        name: _page
+        type: string
+      - default: "5"
+        description: size
+        in: query
+        name: _size
+        type: string
+      - description: sort
+        in: query
+        name: _sort
+        type: string
+      - description: filter
+        in: query
+        name: _filter
+        type: string
+      - description: global filter
+        in: query
+        name: _q
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MNotesPage
+      tags:
+      - mNotes
+    post:
+      consumes:
+      - application/json
+      description: Create MNotes
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: Add MNotes
+        in: body
+        name: mNotes
+        required: true
+        schema:
+          $ref: '#/definitions/model.MNotes'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MNotesCreate
+      tags:
+      - mNotes
+  /v1/m_notes/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete MNotes by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: MNotes id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MNotesDelete
+      tags:
+      - mNotes
+    get:
+      consumes:
+      - application/json
+      description: Get MNotes by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: MNotes id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MNotesIndex
+      tags:
+      - mNotes
+    put:
+      consumes:
+      - application/json
+      description: Update MNotes
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: Update MNotes
+        in: body
+        name: mNotes
+        required: true
+        schema:
+          $ref: '#/definitions/model.MNotes'
+      - description: MNotes id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MNotesUpdate
+      tags:
+      - mNotes
+  /v1/m_notes/delete/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Soft Delete MNotes by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: MNotes id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MNotesSoftDelete
+      tags:
+      - mNotes
+  /v1/m_notes/header:
+    get:
+      consumes:
+      - application/json
+      description: Get MNotes header
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MNotesHeader
+      tags:
+      - mNotes
+  /v1/m_role:
+    get:
+      consumes:
+      - application/json
+      description: Get Page MRole
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - default: "0"
+        description: page
+        in: query
+        name: _page
+        type: string
+      - default: "5"
+        description: size
+        in: query
+        name: _size
+        type: string
+      - description: sort
+        in: query
+        name: _sort
+        type: string
+      - description: filter
+        in: query
+        name: _filter
+        type: string
+      - description: global filter
+        in: query
+        name: _q
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MRolePage
+      tags:
+      - mRole
+    post:
+      consumes:
+      - application/json
+      description: Create MRole
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: Add MRole
+        in: body
+        name: mRole
+        required: true
+        schema:
+          $ref: '#/definitions/model.MRole'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MRoleCreate
+      tags:
+      - mRole
+  /v1/m_role/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete MRole by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: MRole id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MRoleDelete
+      tags:
+      - mRole
+    get:
+      consumes:
+      - application/json
+      description: Get MRole by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: MRole id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MRoleIndex
+      tags:
+      - mRole
+    put:
+      consumes:
+      - application/json
+      description: Update MRole
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: Update MRole
+        in: body
+        name: mRole
+        required: true
+        schema:
+          $ref: '#/definitions/model.MRole'
+      - description: MRole id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MRoleUpdate
+      tags:
+      - mRole
+  /v1/m_role/delete/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Soft Delete MRole by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: MRole id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MRoleSoftDelete
+      tags:
+      - mRole
+  /v1/m_role/header:
+    get:
+      consumes:
+      - application/json
+      description: Get MRole header
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MRoleHeader
+      tags:
+      - mRole
+  /v1/m_user:
+    get:
+      consumes:
+      - application/json
+      description: Get Page MUser
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - default: "0"
+        description: page
+        in: query
+        name: _page
+        type: string
+      - default: "5"
+        description: size
+        in: query
+        name: _size
+        type: string
+      - description: sort
+        in: query
+        name: _sort
+        type: string
+      - description: filter
+        in: query
+        name: _filter
+        type: string
+      - description: global filter
+        in: query
+        name: _q
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MUserPage
+      tags:
+      - mUser
+    post:
+      consumes:
+      - application/json
+      description: Create MUser
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: Add MUser
+        in: body
+        name: mUser
+        required: true
+        schema:
+          $ref: '#/definitions/model.MUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MUserCreate
+      tags:
+      - mUser
+  /v1/m_user/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete MUser by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: MUser id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MUserDelete
+      tags:
+      - mUser
+    get:
+      consumes:
+      - application/json
+      description: Get MUser by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: MUser id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MUserIndex
+      tags:
+      - mUser
+    put:
+      consumes:
+      - application/json
+      description: Update MUser
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: Update MUser
+        in: body
+        name: mUser
+        required: true
+        schema:
+          $ref: '#/definitions/model.MUser'
+      - description: MUser id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MUserUpdate
+      tags:
+      - mUser
+  /v1/m_user/delete/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Soft Delete MUser by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: MUser id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MUserSoftDelete
+      tags:
+      - mUser
+  /v1/m_user/header:
+    get:
+      consumes:
+      - application/json
+      description: Get MUser header
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: MUserHeader
+      tags:
+      - mUser
+  /v1/t_reset_password:
+    get:
+      consumes:
+      - application/json
+      description: Get Page TResetPassword
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - default: "0"
+        description: page
+        in: query
+        name: _page
+        type: string
+      - default: "5"
+        description: size
+        in: query
+        name: _size
+        type: string
+      - description: sort
+        in: query
+        name: _sort
+        type: string
+      - description: filter
+        in: query
+        name: _filter
+        type: string
+      - description: global filter
+        in: query
+        name: _q
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: TResetPasswordPage
+      tags:
+      - tResetPassword
+    post:
+      consumes:
+      - application/json
+      description: Create TResetPassword
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: Add TResetPassword
+        in: body
+        name: tResetPassword
+        required: true
+        schema:
+          $ref: '#/definitions/model.TResetPassword'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: TResetPasswordCreate
+      tags:
+      - tResetPassword
+  /v1/t_reset_password/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete TResetPassword by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: TResetPassword id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: TResetPasswordDelete
+      tags:
+      - tResetPassword
+    get:
+      consumes:
+      - application/json
+      description: Get TResetPassword by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: TResetPassword id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: TResetPasswordIndex
+      tags:
+      - tResetPassword
+    put:
+      consumes:
+      - application/json
+      description: Update TResetPassword
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: Update TResetPassword
+        in: body
+        name: tResetPassword
+        required: true
+        schema:
+          $ref: '#/definitions/model.TResetPassword'
+      - description: TResetPassword id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: TResetPasswordUpdate
+      tags:
+      - tResetPassword
+  /v1/t_reset_password/delete/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Soft Delete TResetPassword by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: TResetPassword id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: TResetPasswordSoftDelete
+      tags:
+      - tResetPassword
+  /v1/t_reset_password/header:
+    get:
+      consumes:
+      - application/json
+      description: Get TResetPassword header
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: TResetPasswordHeader
+      tags:
+      - tResetPassword
+  /v1/t_token:
+    get:
+      consumes:
+      - application/json
+      description: Get Page TToken
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - default: "0"
+        description: page
+        in: query
+        name: _page
+        type: string
+      - default: "5"
+        description: size
+        in: query
+        name: _size
+        type: string
+      - description: sort
+        in: query
+        name: _sort
+        type: string
+      - description: filter
+        in: query
+        name: _filter
+        type: string
+      - description: global filter
+        in: query
+        name: _q
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: TTokenPage
+      tags:
+      - tToken
+    post:
+      consumes:
+      - application/json
+      description: Create TToken
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: Add TToken
+        in: body
+        name: tToken
+        required: true
+        schema:
+          $ref: '#/definitions/model.TToken'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: TTokenCreate
+      tags:
+      - tToken
+  /v1/t_token/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete TToken by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: TToken id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: TTokenDelete
+      tags:
+      - tToken
+    get:
+      consumes:
+      - application/json
+      description: Get TToken by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: TToken id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: TTokenIndex
+      tags:
+      - tToken
+    put:
+      consumes:
+      - application/json
+      description: Update TToken
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: Update TToken
+        in: body
+        name: tToken
+        required: true
+        schema:
+          $ref: '#/definitions/model.TToken'
+      - description: TToken id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: TTokenUpdate
+      tags:
+      - tToken
+  /v1/t_token/delete/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Soft Delete TToken by id
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      - description: TToken id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: TTokenSoftDelete
+      tags:
+      - tToken
+  /v1/t_token/header:
+    get:
+      consumes:
+      - application/json
+      description: Get TToken header
+      parameters:
+      - default: gzip
+        description: gzip
+        in: header
+        name: Accept-Encoding
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: TTokenHeader
+      tags:
+      - tToken
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
