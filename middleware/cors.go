@@ -30,9 +30,9 @@ func CORSMiddleware() gin.HandlerFunc {
 // - Preflight requests cached for 12 hours
 func CORSGinMiddleware() gin.HandlerFunc {
 	return cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:8385"},
-		AllowMethods:     []string{"POST, OPTIONS, GET, PUT"},
-		AllowHeaders:     []string{"Origin"},
+		AllowOrigins:     []string{"http://localhost:8385", "http://localhost:3000", "http://localhost:*"},
+		AllowMethods:     []string{"POST, OPTIONS, GET, PUT", "DELETE"},
+		AllowHeaders:     []string{"Origin", "Authorization", "Host", "Accept-Encoding"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 		AllowOriginFunc: func(origin string) bool {
