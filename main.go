@@ -35,7 +35,7 @@ func init() {
 //	@license.name	Apache 2.0
 //	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
 
-//	@host		assusa456u.local:8802
+//	@host		localhost:8802
 //	@BasePath	/
 
 // user and pass login
@@ -50,7 +50,7 @@ func init() {
 // @externalDocs.url			https://swagger.io/resources/open-api/
 func main() {
 	// swagger
-	docs.SwaggerInfo.Host = "assusa456u.local:8802"
+	docs.SwaggerInfo.Host = "localhost:8802"
 
 	// set session store key
 	store := cookie.NewStore([]byte("secret"))
