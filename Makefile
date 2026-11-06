@@ -27,25 +27,31 @@ clean:
 	rm -rf output/csv
 
 swag_init:
-	/home/mos/go/bin/swag init
+	/home/user0/go/bin/swag init
 	sed -i 's/LeftDelim:        "{{",//g' docs/docs.go
 	sed -i 's/RightDelim:       "}}",//g' docs/docs.go
 dev: swag_init
-	/home/mos/go/bin/CompileDaemon -command="./${BINARY_NAME}" -pattern="(.+\.go|.+\.c|.+\.html|.+\.css|.+\.js)"
+	/home/user0/go/bin/CompileDaemon -command="./${BINARY_NAME}" -pattern="(.+\.go|.+\.c|.+\.html|.+\.css|.+\.js)"
 
 # hot reload by air
 air:
 	swag_init
-	/home/mos/go/bin/air server --port 8080
+	/home/user0/go/bin/air server --port 8080
 
 migrate:
 	go run migrate/migrate.go
 
+# main and docs are excluded: main's init() needs .env and a MySQL connection
+TEST_PKGS=./constant/... ./controller/... ./initializer/... ./middleware/... ./model/... ./route/... ./service/... ./util/...
+
 test_dev:
-	go test ./tests/... -v > ./docs/test.out
+	mkdir -p log
+	go test $(TEST_PKGS) -v > log/test.out
 
 test_coverage:
-	go test ./tests/... -v -coverprofile=coverage.out
+	mkdir -p log
+	go test $(TEST_PKGS) -coverprofile=log/coverage.out -covermode=atomic
+	go tool cover -func=log/coverage.out | tail -1
 
 dep:
 	go mod download
@@ -58,5 +64,5 @@ lint:
 
 # web
 web_run:
-	 /home/mos/go/bin/fyne serve
+	 /home/user0/go/bin/fyne serve
 

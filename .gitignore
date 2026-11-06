@@ -20,11 +20,10 @@
 # Go workspace file
 go.work
 go.work.sum
-gorm-log.txt
 
 # env file
 .env
-.env*
+.env_*
 
 # dir
 bin

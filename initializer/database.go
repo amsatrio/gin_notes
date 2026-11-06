@@ -16,9 +16,14 @@ var DB *gorm.DB
 func ConnectToDB() {
 	var err error
 
-	file, err := os.Create("gorm-log.txt")
+	if _, err := os.Stat("log"); os.IsNotExist(err) {
+		if err := os.Mkdir("log", os.ModePerm); err != nil {
+			panic(err)
+		}
+	}
+
+	file, err := os.Create("log/gorm-log.txt")
 	if err != nil {
-		// Handle error
 		panic(err)
 	}
 	// Make sure file is closed before your app shuts down.

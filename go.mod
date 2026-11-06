@@ -3,9 +3,11 @@ module github.com/amsatrio/gin_notes
 go 1.26.10
 
 require (
+	github.com/alicebob/miniredis/v2 v2.40.0
 	github.com/gin-contrib/sessions v1.0.1
 	github.com/go-playground/validator/v10 v10.30.6
 	github.com/swaggo/swag v1.16.6
+	gorm.io/driver/sqlite v1.6.0
 	gorm.io/gorm v1.31.2
 )
 
@@ -41,6 +43,7 @@ require (
 	github.com/klauspost/cpuid/v2 v2.4.2 // indirect
 	github.com/leodido/go-urn v1.5.0 // indirect
 	github.com/mattn/go-isatty v0.0.24 // indirect
+	github.com/mattn/go-sqlite3 v1.14.22 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pelletier/go-toml/v2 v2.4.3 // indirect
@@ -48,6 +51,7 @@ require (
 	github.com/quic-go/quic-go v0.65.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.3.2 // indirect
+	github.com/yuin/gopher-lua v1.1.1 // indirect
 	go.mongodb.org/mongo-driver/v2 v2.9.3 // indirect
 	go.uber.org/atomic v1.12.0 // indirect
 	go.yaml.in/yaml/v3 v3.0.6 // indirect
@@ -65,7 +69,6 @@ require (
 	github.com/gin-contrib/cors v1.7.10
 	github.com/gin-contrib/gzip v1.2.9
 	github.com/gin-gonic/gin v1.12.0
-	github.com/go-playground/assert/v2 v2.2.0
 	github.com/golang-jwt/jwt/v5 v5.3.1
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
