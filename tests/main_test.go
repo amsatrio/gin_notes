@@ -7,7 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/amsatrio/gin_notes/controller"
-	"github.com/amsatrio/gin_notes/controller_exp"
 	"github.com/amsatrio/gin_notes/initializer"
 	"github.com/amsatrio/gin_notes/middleware"
 )
@@ -22,19 +21,6 @@ func AppRoutes(r *gin.Engine) {
 		mUserRoute(v1)
 		tResetPasswordRoute(v1)
 		tTokenRoute(v1)
-
-		// REDIS
-		v1.DELETE("/redis", controller_exp.RedisFlush)
-
-		// File
-		v1.POST("/file", controller_exp.FileUpload)
-
-		// Transport stream
-		v1.GET("/segment/:segmentIndex", controller_exp.MovieStream)
-
-		// Test Error
-		v1.GET("test_error", controller_exp.ErrorTest)
-
 	}
 	v2 := r.Group("/v2")
 	{
